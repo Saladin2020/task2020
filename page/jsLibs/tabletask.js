@@ -48,8 +48,10 @@ let v_table_task = new Vue({
             axios.post('./v1/load.php', post_data)
                 .then(response => {
                     this.dat = response.data.body
-                    this.head_func()
-                    this.generate_calendar()
+                    if (this.dat != undefined) {
+                        this.head_func()
+                        this.generate_calendar()
+                    }
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -62,7 +64,6 @@ let v_table_task = new Vue({
                     this.yearmonth = this.head[i].DATE.slice(0, 7)
                 }
             }
-
         },
         generate_calendar: function () {
             let day = 0;
