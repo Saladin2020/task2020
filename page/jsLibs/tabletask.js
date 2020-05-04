@@ -6,14 +6,14 @@ let v_table_task = new Vue({
         dat: [],
         task: [],
         week: {},
-        sel_yearmonth: moment().format('Y-MM'),
+        sel_yearmonth_gen: moment().format('Y-MM'),
     },
     mounted() {
         this.load_cetagory()
         this.load_data()
     },
     methods: {
-        date_select_func: function () {
+        gen_date_select_func: function () {
             this.clear_fun()
             this.load_cetagory()
             this.load_data()
@@ -36,7 +36,8 @@ let v_table_task = new Vue({
                 })
         },
         load_data: function () {
-            let ym = this.sel_yearmonth.split('-')
+            console.log(this.sel_yearmonth_gen)
+            let ym = this.sel_yearmonth_gen.split('-')
             let post_data = {}
             if (ym.length > 0) {
                 post_data = {

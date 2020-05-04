@@ -6,7 +6,7 @@
             <button class="btn btn-primary" v-on:click="generate">Generate</button>
         </div>
         <br>
-        <input v-model="sel_yearmonth" @change="date_select_func" class="form-control" type="month">
+        <input v-model="sel_yearmonth_gen" @change="gen_date_select_func" class="form-control" type="month">
         <br>
         <table class="table table-bordered">
             <thead>

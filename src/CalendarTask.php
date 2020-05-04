@@ -133,18 +133,18 @@ class CalendarTask
         ///set task
         $path_task = Config::PATH_CONFIG("store_task");
         $filename_task = $path_task . $year . "_" . $month . '_task.json';
-        $result = jsonFile::load($filename_task);
-
-
-        for ($i = 0; $i < count($result); $i++) {
-            foreach ($result[$i] as $k0 => $v0) {
-                $this->setTask($k0, "STATUS", $v0["status"]);
-                foreach ($v0["task"] as $k1 => $v1) {
-                    $this->setTask(
-                        $k0,
-                        $k1,
-                        $v1
-                    );
+        if (file_exists($filename_task)) {
+            $result = jsonFile::load($filename_task);
+            for ($i = 0; $i < count($result); $i++) {
+                foreach ($result[$i] as $k0 => $v0) {
+                    $this->setTask($k0, "STATUS", $v0["status"]);
+                    foreach ($v0["task"] as $k1 => $v1) {
+                        $this->setTask(
+                            $k0,
+                            $k1,
+                            $v1
+                        );
+                    }
                 }
             }
         }
