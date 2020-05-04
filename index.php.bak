@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .body {
+        font-family: monospace;
+    }
+</style>
+
+<body>
+
+
+    <br>
+    <div class="container-fluid">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#createTaskModal">
+            Create Task
+        </button>
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#createUserModal">
+            Create User
+        </button>
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#userTaskModal">
+            Set Task Number to User
+        </button>
+
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#setCalendarModal">
+            Set Calendar
+        </button>
+
+        <!-- The Modal -->
+        <div id="cetagory_manager">
+            <div class="modal fade" id="createTaskModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form id="form_000" @submit.prevent="create">
+                                <div class="form-group">
+                                    <label> รหัส :</label>
+                                    <input v-model="id" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label> ชื่อเวร :</label>
+                                    <input v-model="name" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label> รายละเอียดอื่นๆ :</label>
+                                    <input v-model="description" class="form-control" type="number">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button form="form_000" class="btn btn-dark" type="submit"><i class="fas fa-save"></i>ยืนยัน</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- The Modal -->
+        <div id="user_manager">
+            <div class="modal fade" id="createUserModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form id="form_001" @submit.prevent="create">
+                                <div class="form-group">
+                                    <label> รหัส :</label>
+                                    <input v-model="id" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label> ชื่อ :</label>
+                                    <input v-model="first_name" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label> นามสกุล :</label>
+                                    <input v-model="last_name" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label> รายละเอียดอื่นๆ :</label>
+                                    <input v-model="description" class="form-control" type="number">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button form="form_001" class="btn btn-dark" type="submit"><i class="fas fa-save"></i>ยืนยัน</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- The Modal -->
+        <div id="user_task">
+            <div class="modal fade" id="userTaskModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">User Task</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form id="form_002" @submit.prevent="save_task">
+                                <div class="form-group">
+                                    <label> เลือก :</label>
+                                    <select v-model="id" required class="form-control">
+                                        <option v-for="usr in user_list" :value="usr.id">{{usr.first_name + ' ' + usr.last_name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> year_month :</label>
+                                    <input v-model="yearmonth" class="form-control" type="month">
+                                </div>
+                                <div class="form-group" v-for="cet in cetagory_list">
+                                    <label> {{cet.name}} :</label>
+                                    <input v-model="cetag[cet.id]" class="form-control" type="text">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button form="form_002" class="btn btn-dark" type="submit"><i class="fas fa-save"></i>ยืนยัน</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>last_name</th>
+                        <th>description</th>
+                        <th v-for="(cet, index) in cetagory_list" :key="index">
+                            {{cet.id}} <br> {{cet.name}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(usr, index) in user_list" :key="index">
+                        <td>{{usr.id}}</td>
+                        <td>{{usr.first_name}}</td>
+                        <td>{{usr.last_name}}</td>
+                        <td>{{usr.description}}</td>
+                        <template v-for="usrd in user_date_list" v-if="usrd.id == usr.id">
+                            <td v-for="cet in cetagory_list">
+                                {{usrd[cet.id]}}
+                            </td>
+                        </template>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- The Modal -->
+        <div id="set_calendar">
+            <div class="modal fade" id="setCalendarModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Set Calendar</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form id="form_003" @submit.prevent="create">
+                                <div class="form-group">
+                                    <label> วันที่ :</label>
+                                    <select v-model="day" required class="form-control">
+                                        <option v-for="d in day_list" :value="d">{{d}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> status :</label>
+                                    <input v-model="status" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label> task_name :</label>
+                                    <select v-model="task_name" required class="form-control">
+                                        <option v-for="cet in cetagory_list" :value="cet.id">{{cet.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> description :</label>
+                                    <input v-model="description" class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label> max_number_position :</label>
+                                    <input v-model="max_number_position" class="form-control" type="number">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button form="form_003" class="btn btn-dark" type="submit"><i class="fas fa-save"></i>ยืนยัน</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <br>
+    <div class="container-fluid">
+        <div id="table_task">
+            <h1>Task</h1>
+            <div class="d-flex justify-content-between">
+                <h3>{{yearmonth}}</h3>
+                <button class="btn btn-primary" v-on:click="generate">Generate</button>
+            </div>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>task</th>
+                        <th v-for="item in head">
+                            {{item['DAY_NAME']}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template v-for="w in week">
+                        <tr>
+                            <td>day</td>
+                            <td v-for="d in w">
+                                {{d.DAY}}
+                            </td>
+                        </tr>
+                        <tr v-for="t in task">
+                            <td>{{t.id}}</td>
+                            <td v-for="d in w">
+                                <ul v-for="usr in dat[d.DAY - 1][t.id]['users']">
+                                    <li>{{usr.fullname}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="jsLibs/cetagorymanager.js"></script>
+    <script src="jsLibs/usermanager.js"></script>
+    <script src="jsLibs/usertask.js"></script>
+    <script src="jsLibs/setcalendar.js"></script>
+    <script src="jsLibs/tabletask.js"></script>
+</body>
+
+</html>

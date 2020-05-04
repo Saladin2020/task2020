@@ -1,0 +1,15 @@
+{
+    "name": "saladin/task2020",
+    "authors": [
+        {
+            "name": "Saladin",
+            "email": "negaton.app@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Saladin\\": "src"
+        }
+    }
+}
