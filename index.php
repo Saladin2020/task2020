@@ -14,7 +14,7 @@
     <script src="assets/js/axios.min.js"></script>
     <script src="assets/js/vue-append.js"></script>
     <script src="assets/js/moment.min.js"></script>
-    <title>Document</title>
+    <title>Task2020</title>
 </head>
 <style>
     .body {
