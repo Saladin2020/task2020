@@ -56,6 +56,7 @@
     <a v-on:click="active_button_func('usertask')" href="#"><img v-if="is_active_func('usertask')" src="assets/images/tools-and-utensils.svg" width="32">&nbsp;usertask</a>
     <a v-on:click="active_button_func('setcalendar')" href="#"><img v-if="is_active_func('setcalendar')" src="assets/images/tools-and-utensils.svg" width="32">&nbsp;setcalendar</a>
     <a v-on:click="active_button_func('generate')" href="#"><img v-if="is_active_func('generate')" src="assets/images/tools-and-utensils.svg" width="32">&nbsp;generate</a>
+    <a v-on:click="logout" href="#">logout</a>
 </div>
 
 <script src="./page/jsLibs/menu.js"></script>

@@ -11,6 +11,16 @@ v_menu = new Vue({
         },
         is_active_func: function (name) {
             return this.menu_me == name
+        },
+        logout: function () {
+            axios.get('./v1/auth.php?logout=1')
+                .then(response => {
+                    console.log(response.data)
+                    location.reload()
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         }
     },
 })

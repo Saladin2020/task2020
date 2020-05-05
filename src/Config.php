@@ -68,6 +68,7 @@ class Config
     public static function PATH_CONFIG($name)
     {
         $path = [
+            "auth" => "../auth/@.json",
             "store_user" => "../store/user/",
             "store_task" => "../store/task/",
             "store_cetagory" => "../store/cetagory/",
