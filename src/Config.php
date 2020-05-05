@@ -4,7 +4,8 @@ namespace Saladin;
 
 class Config
 {
-    private const path = [
+    //php > 7
+    /*private const path = [
         "store_user" => "../store/user/",
         "store_task" => "../store/task/",
         "store_cetagory" => "../store/cetagory/",
@@ -38,6 +39,44 @@ class Config
             return self::path[$name];
         }else{
             echo "not found '".$name."'<br>";
+            return null;
+        }
+    }*/
+    public static function DB_CONFIG($name)
+    {
+        $database = [
+            "master" => [
+                "HOSTNAME" => "localhost",
+                "DATABASE" => "aroundme",
+                "USERNAME" => "root",
+                "PASSWORD" => ""
+            ],
+            'slave' => [
+                "HOSTNAME" => "",
+                "DATABASE" => "",
+                "USERNAME" => "",
+                "PASSWORD" => ""
+            ]
+        ];
+        if (isset($database[$name]) != NULL) {
+            return $database[$name];
+        } else {
+            echo "not found '" . $name . "'<br>";
+            return null;
+        }
+    }
+    public static function PATH_CONFIG($name)
+    {
+        $path = [
+            "store_user" => "../store/user/",
+            "store_task" => "../store/task/",
+            "store_cetagory" => "../store/cetagory/",
+        ];
+
+        if (isset($path[$name]) != NULL) {
+            return $path[$name];
+        } else {
+            echo "not found '" . $name . "'<br>";
             return null;
         }
     }

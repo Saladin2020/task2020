@@ -1,7 +1,7 @@
 <?php
 
 use Saladin\Config;
-use Saladin\jsonFile;
+use Saladin\JsonFile;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -40,7 +40,7 @@ if ($task_name != '' && $max_number_position != '') {
         "task" => $arr_set
     );
     if (file_exists($filename)) {
-        $result = jsonFile::load($filename);
+        $result = JsonFile::load($filename);
         if ($result != '') {
             $index = -1;
             for ($i = 0; $i < count($result); $i++) {
@@ -59,11 +59,11 @@ if ($task_name != '' && $max_number_position != '') {
             } else {
                 array_push($result, $task_list);
             }
-            jsonFile::store($result, $filename);
+            JsonFile::store($result, $filename);
         } else {
-            jsonFile::store([$task_list], $filename);
+            JsonFile::store([$task_list], $filename);
         }
     } else {
-        jsonFile::store([$task_list], $filename);
+        JsonFile::store([$task_list], $filename);
     }
 }

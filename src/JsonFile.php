@@ -2,7 +2,7 @@
 
 namespace Saladin;
 
-class jsonFile
+class JsonFile
 {
     public static function store($objString, $filename)
     {
