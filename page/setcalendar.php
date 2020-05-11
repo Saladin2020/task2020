@@ -57,26 +57,29 @@
         <br>
         <input v-model="sel_task_yearmonth" @change="task_date_select_func" class="form-control" type="month">
         <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>day</th>
-                    <th>status</th>
-                    <th>task</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(task, index) in task_date_list">
-                    <td>{{Object.keys(task)[0]}}</td>
-                    <td>{{task[Object.keys(task)[0]].status}}</td>
-                    <td>
-                        <ul v-for="(c, i) in task[Object.keys(task)[0]].task">
-                            <li>{{i}} >> {{Object.keys(c)[0]}} : {{c[Object.keys(c)[0]]}} >> {{Object.keys(c)[1]}} : {{c[Object.keys(c)[1]]}}</li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>day</th>
+                        <th>status</th>
+                        <th>task</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(task, index) in task_date_list">
+                        <td>{{Object.keys(task)[0]}}</td>
+                        <td>{{task[Object.keys(task)[0]].status}}</td>
+                        <td>
+                            <ul v-for="(c, i) in task[Object.keys(task)[0]].task">
+                                <li>{{i}} >> {{Object.keys(c)[0]}} : {{c[Object.keys(c)[0]]}} >> {{Object.keys(c)[1]}} : {{c[Object.keys(c)[1]]}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </div>

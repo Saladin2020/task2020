@@ -32,11 +32,11 @@ let v_cetagory_manager = new Vue({
                     console.log(response.data)
                     Swal.fire({
                         width:250,
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
+                        title: 'บันทึก',
+                        text: "ระบบทำการบ้นทึกเรียบร้อย",
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Yes, delete it!'
+                        confirmButtonText: 'ok',
                     }).then((result) => {
                         if (result.value) {
                             this.cetagory_list = []

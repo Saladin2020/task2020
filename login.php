@@ -15,13 +15,19 @@ if (isset($_SESSION["Allow"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <link href="assets/fonts/kanit.css" rel="stylesheet">
     <script src="assets/js/vue.js"></script>
     <script src="assets/js/axios.min.js"></script>
     <title>Task2020</title>
+    <style>
+    body {
+        font-family: 'Kanit';
+        padding-top:3rem;
+    }
+</style>
 </head>
 
-<body style="padding-top:3rem;">
+<body>
     <div class="container">
         <div id="auth">
             <div class="card text-left">
@@ -39,9 +45,9 @@ if (isset($_SESSION["Allow"])) {
                             </div>
                             <div class="form-group">
                                 <label> password :</label>
-                                <input class="form-control" v-model="password" type="text">
+                                <input class="form-control" v-model="password" type="password">
                             </div>
-                            <span v-if="message == 'incorrect'">incorrect</span>
+                            <span class="text-danger" v-if="message == 'incorrect'">incorrect</span>
                             <span v-else>&nbsp;</span>
                             <br><br>
                         </form>

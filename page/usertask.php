@@ -16,8 +16,8 @@
                     </div>
 
                     <!-- Modal body -->
-                   
-                            
+
+
                     <div class="modal-body">
                         <form id="form_002" @submit.prevent="save_task">
                             <div class="form-group">
@@ -49,33 +49,35 @@
         <br>
         <input v-model="sel_yearmonth" @change="date_select_func" class="form-control" type="month">
         <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>first_name</th>
-                    <th>last_name</th>
-                    <th>description</th>
-                    <th v-for="(cet, index) in cetagory_list" :key="index">
-                        {{cet.name}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(usr, index) in user_list" :key="index">
-                    <td>{{usr.id}}</td>
-                    <td>{{usr.first_name}}</td>
-                    <td>{{usr.last_name}}</td>
-                    <td>{{usr.description}}</td>
-                    <template v-for="usrd in user_date_list" v-if="usrd.id == usr.id">
-                        <td v-for="cet in cetagory_list">
-                            {{usrd[cet.id]}}
-                        </td>
-                    </template>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>last_name</th>
+                        <th>description</th>
+                        <th v-for="(cet, index) in cetagory_list" :key="index">
+                            {{cet.name}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(usr, index) in user_list" :key="index">
+                        <td>{{usr.id}}</td>
+                        <td>{{usr.first_name}}</td>
+                        <td>{{usr.last_name}}</td>
+                        <td>{{usr.description}}</td>
+                        <template v-for="usrd in user_date_list" v-if="usrd.id == usr.id">
+                            <td v-for="cet in cetagory_list">
+                                {{usrd[cet.id]}}
+                            </td>
+                        </template>
 
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

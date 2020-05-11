@@ -85,6 +85,20 @@ let v_user_task = new Vue({
             axios.post('./v1/create_task_user.php', post_data)
                 .then(response => {
                     console.log(response.data)
+                    Swal.fire({
+                        width:250,
+                        title: 'บันทึก',
+                        text: "ระบบทำการบ้นทึกเรียบร้อย",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok',
+                    }).then((result) => {
+                        if (result.value) {
+                            this.date_select_func()
+                            //this.user_list = []
+                            //this.load_users()
+                        }
+                    })
                 })
                 .catch(function (error) {
                     console.log(error)

@@ -50,24 +50,26 @@
             </div>
         </div>
         <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>max_number_position</th>
-                    <th>description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="cet in cetagory_list">
-                    <td>{{cet.id}}</td>
-                    <td>{{cet.name}}</td>
-                    <td>{{cet.max_number_position}}</td>
-                    <td>{{cet.description}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>max_number_position</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="cet in cetagory_list">
+                        <td>{{cet.id}}</td>
+                        <td>{{cet.name}}</td>
+                        <td>{{cet.max_number_position}}</td>
+                        <td>{{cet.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <script src="./page/jsLibs/cetagorymanager.js"></script>

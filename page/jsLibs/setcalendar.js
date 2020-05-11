@@ -75,6 +75,18 @@ let v_set_calendar = new Vue({
             axios.post('./v1/create_task.php', post_data)
                 .then(response => {
                     console.log(response.data)
+                    Swal.fire({
+                        width:250,
+                        title: 'บันทึก',
+                        text: "ระบบทำการบ้นทึกเรียบร้อย",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok',
+                    }).then((result) => {
+                        if (result.value) {
+                           this.task_date_select_func()
+                        }
+                    })
                 })
                 .catch(function (error) {
                     console.log(error)

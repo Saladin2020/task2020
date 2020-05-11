@@ -59,26 +59,28 @@
             </div>
         </div>
         <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>first_name</th>
-                    <th>last_name</th>
-                    <th>line token</th>
-                    <th>description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="user in user_list">
-                    <td>{{user.id}}</td>
-                    <td>{{user.first_name}}</td>
-                    <td>{{user.last_name}}</td>
-                    <td>{{user.line_token}}</td>
-                    <td>{{user.description}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>first_name</th>
+                        <th>last_name</th>
+                        <th>line token</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="user in user_list">
+                        <td>{{user.id}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.line_token}}</td>
+                        <td>{{user.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
